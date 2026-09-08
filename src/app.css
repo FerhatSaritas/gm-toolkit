@@ -1,0 +1,172 @@
+@import "./lib/markdown.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-body-md);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--surface-canvas);
+}
+
+/* Allow text selection in content panes */
+pre,
+.raw-md {
+  user-select: text;
+}
+
+/* Bevelled rails */
+.rail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface-raised);
+  border-right: 1px solid var(--border-static);
+  box-shadow: inset 1px 0 0 var(--border-bevel-light);
+}
+
+.rail:last-child {
+  border-right: none;
+  border-left: 1px solid var(--border-static);
+  box-shadow: inset -1px 0 0 var(--border-bevel-dark);
+}
+
+.rail-header {
+  flex: none;
+  padding: var(--gutter-sm) var(--inset-panel);
+  border-bottom: 1px solid var(--border-static);
+  box-shadow: inset 0 1px 0 var(--border-bevel-light);
+}
+
+.rail-title {
+  color: var(--amber);
+  margin: 0;
+}
+
+.rail-footer {
+  flex: none;
+  padding: var(--gutter-sm) var(--inset-panel);
+  border-top: 1px solid var(--border-static);
+  color: var(--text-tertiary);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gutter-xs);
+  border-radius: var(--rounded);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition:
+    background 100ms ease,
+    border-color 100ms ease,
+    box-shadow 100ms ease,
+    transform 80ms ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 1px var(--border-focus);
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: var(--surface-canvas);
+  border: 1px solid var(--amber);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--amber-bright);
+  box-shadow: var(--glow-amber);
+}
+
+.btn-secondary {
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-overlay);
+  color: var(--text-primary);
+  border-color: var(--amber);
+  box-shadow: var(--glow-amber);
+}
+
+.btn-danger {
+  background: var(--crimson);
+  color: #ffffff;
+  border: 1px solid var(--crimson);
+}
+
+.btn-danger:hover {
+  background: var(--crimson-bright);
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--amber);
+}
+
+/* Scrollbars — slim, slate */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-overlay);
+  border: 2px solid transparent;
+  background-clip: content-box;
+  border-radius: var(--rounded-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--surface-highlight);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

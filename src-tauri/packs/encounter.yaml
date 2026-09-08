@@ -1,0 +1,42 @@
+name: Encounter Pack
+kind: encounter
+tables:
+  objective:
+    - guard the river crossing until dawn
+    - buy time for a ritual to finish
+    - silence a witness before they talk
+    - capture the courier alive
+    - defend the roadside shrine
+    - clear the mine of squatters
+  terrain:
+    - a ford choked with wreckage
+    - a collapsed bridge
+    - a market square at noon
+    - a mine shaft lit by guttering lamps
+    - a forest road after rain
+    - a marsh causeway
+    - a frozen lake
+  complication:
+    - reinforcements arrive mid-fight
+    - the floor gives way
+    - fog rolls in
+    - hostages are caught in the fray
+    - a rival joins the losing side
+    - dusk falls and lights die
+  escalation:
+    - drums begin in the dark
+    - the idol begins to glow
+    - a horn echoes twice
+templates:
+  default: |
+    ## Objective
+    The enemy seeks to {objective}.
+
+    ## Terrain
+    The fight happens in {terrain}.
+
+    ## Complication
+    {complication}.
+
+    ## Escalation
+    If the fight drags on: {escalation}.

@@ -1,0 +1,99 @@
+name: NPC Pack
+kind: npc
+tables:
+  name:
+    - Aelric
+    - Brissa
+    - Corvin
+    - Dagna
+    - Elessar
+    - Fenwick
+    - Greta
+    - Hamond
+    - Isolde
+    - Jarek
+    - Kessa
+    - Lorvan
+    - Miri
+    - Nalik
+    - Odessa
+    - Perrin
+    - Quill
+    - Rooka
+    - Sable
+    - Tamsin
+    - Ulric
+    - Vela
+    - Wren
+    - Xara
+    - Yorick
+    - Zeva
+  ancestry:
+    - human
+    - dwarf
+    - elf
+    - halfling
+    - half-orc
+    - gnome
+    - tiefling
+    - dragonborn
+  occupation:
+    - ferrymaster
+    - hedge witch
+    - dice shark
+    - falconer
+    - scribe
+    - butcher
+    - cartographer
+    - goldsmith
+    - ratcatcher
+    - minstrel
+    - smuggler
+    - innkeeper
+  appearance:
+    - scarred knuckles
+    - ink-stained fingers
+    - one milky eye
+    - a limp and a grin
+    - braided beard bells
+    - mismatched eyes
+    - burn-scarred jaw
+    - tide-worn boots
+  personality:
+    - greedy
+    - pious
+    - dour
+    - jocular
+    - skittish
+    - imperious
+    - warm
+    - bitter
+    - curious
+    - superstitious
+  quirk:
+    - weight: 3
+      value: always counting coins
+    - speaks in rhyme
+    - names every animal they meet
+    - never sits facing the door
+    - hoards buttons
+    - whispers to a locket
+    - bets on everything
+    - collects teeth
+    - quotes dead relatives
+  hook:
+    - weight: 3
+      value: owes money to the wrong people
+    - saw something in the mines
+    - is not who they claim to be
+    - wants the party to deliver a letter
+    - hunts a runaway sibling
+    - carries a sealed writ
+    - dreams of the old temple
+    - was cured of something worse than disease
+templates:
+  default: |
+    **Occupation:** {occupation}
+    **Appearance:** {appearance}
+    **Personality:** {personality} — and {quirk}
+    **Hook:** {hook}

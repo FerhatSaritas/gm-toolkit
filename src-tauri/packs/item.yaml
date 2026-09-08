@@ -1,0 +1,66 @@
+name: Item Pack
+kind: item
+tables:
+  quality:
+    - Cracked
+    - Polished
+    - Gilded
+    - Thrice-Cursed
+    - Whispering
+    - Sun-Blessed
+    - Salt-Scoured
+    - Ebony
+  item_type:
+    - dagger
+    - lantern
+    - signet ring
+    - oak cudgel
+    - bone flute
+    - iron key
+    - spyglass
+    - healing salve
+    - rosary
+    - compass
+    - chalice
+    - hand-axe
+  quirk:
+    - hums at dusk
+    - cold to the touch
+    - faint smell of rain
+    - never tarnishes
+    - weighs less than it should
+    - warm like a sleeping cat
+    - drips light
+    - remembers one name
+  rarity:
+    - weight: 4
+      value: common
+    - weight: 3
+      value: uncommon
+    - weight: 2
+      value: rare
+    - very rare
+    - legendary
+  effect:
+    - sheds faint light once per day
+    - never misses when thrown
+    - speaks one true sentence per dawn
+    - opens one lock per moon
+    - guards the sleeper's dreams
+    - mends what it cuts
+  value:
+    - 10 gp
+    - 25 gp
+    - 75 gp
+    - 150 gp
+    - 500 gp
+    - 2000 gp
+templates:
+  default: |
+    **Effect:** {effect}
+    **Quirk:** {quirk}
+fields:
+  name: "{quality} {item_type}"
+  rarity: "{rarity}"
+  kind: "{item_type}"
+  value: "{value}"
