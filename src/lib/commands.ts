@@ -1,4 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
+import { open } from "@tauri-apps/plugin-dialog";
 
 export interface CampaignCounts {
   scenes: number;
@@ -113,8 +114,20 @@ export interface Doc {
 }
 
 export const getConfig = () => invoke<CampaignInfo | null>("get_config");
-export const chooseCampaign = () =>
-  invoke<CampaignInfo | null>("choose_campaign");
+export const setCampaign = (path: string) =>
+  invoke<CampaignInfo>("set_campaign", { path });
+
+/** Folder picker via the plugin's async JS API — safe to call from any thread. */
+export const pickFolder = (title: string) =>
+  open({ title, directory: true, multiple: false }) as Promise<string | null>;
+
+/** File picker via the plugin's async JS API. */
+export const pickFile = (title: string, extensions: string[]) =>
+  open({
+    title,
+    multiple: false,
+    filters: [{ name: extensions.join(", "), extensions }]
+  }) as Promise<string | null>;
 export const readCampaignTree = () => invoke<TreeNode[]>("read_campaign_tree");
 export const readFile = (relPath: string) =>
   invoke<FileDoc>("read_file", { relPath });

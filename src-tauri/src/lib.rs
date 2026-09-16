@@ -123,29 +123,6 @@ fn get_config(state: State<AppState>, app: tauri::AppHandle) -> Result<Option<Ca
 }
 
 #[tauri::command]
-fn choose_campaign(
-    state: State<AppState>,
-    app: tauri::AppHandle,
-) -> Result<Option<CampaignInfo>, String> {
-    use tauri_plugin_dialog::DialogExt;
-
-    let picked = app
-        .dialog()
-        .file()
-        .set_title("Open Campaign Folder")
-        .blocking_pick_folder();
-
-    let Some(picked) = picked else {
-        return Ok(None);
-    };
-    let dir = picked
-        .as_path()
-        .map(Path::to_path_buf)
-        .ok_or_else(|| "Selection is not a filesystem path".to_string())?;
-    open_campaign_at(&state, &app, &dir).map(Some)
-}
-
-#[tauri::command]
 fn set_campaign(
     state: State<AppState>,
     app: tauri::AppHandle,
@@ -373,18 +350,6 @@ fn delete_file(state: State<AppState>, rel_path: String) -> Result<(), String> {
 }
 
 #[tauri::command]
-fn pick_import_file(app: tauri::AppHandle) -> Option<String> {
-    use tauri_plugin_dialog::DialogExt;
-    let picked = app
-        .dialog()
-        .file()
-        .set_title("Import Statblock (.md / .json)")
-        .add_filter("Statblock", &["md", "json"])
-        .blocking_pick_file();
-    picked.and_then(|p| p.as_path().map(|x| x.display().to_string()))
-}
-
-#[tauri::command]
 fn import_preview(path: String) -> Result<import::ImportPreview, String> {
     import::preview(&path)
 }
@@ -485,7 +450,6 @@ pub fn run() {
         .manage(AppState::default())
         .invoke_handler(tauri::generate_handler![
             get_config,
-            choose_campaign,
             set_campaign,
             read_campaign_tree,
             read_file,
@@ -504,7 +468,6 @@ pub fn run() {
             create_statblock,
             duplicate_file,
             delete_file,
-            pick_import_file,
             import_preview,
             commit_import,
             search_campaign,

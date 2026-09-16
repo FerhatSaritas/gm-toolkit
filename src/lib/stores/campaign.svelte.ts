@@ -1,4 +1,11 @@
-import { chooseCampaign, getConfig, loadDoc, readCampaignTree, renderMarkdown } from "../commands";
+import {
+  getConfig,
+  loadDoc,
+  pickFolder,
+  readCampaignTree,
+  renderMarkdown,
+  setCampaign
+} from "../commands";
 import type { CampaignInfo, Doc, TreeNode } from "../commands";
 import { showLibrary } from "./ui.svelte";
 
@@ -46,13 +53,13 @@ export async function initCampaign() {
 export async function openCampaign() {
   campaign.loading = true;
   try {
-    const info = await chooseCampaign();
-    if (info) {
-      campaign.info = info;
-      campaign.doc = null;
-      campaign.tree = await readCampaignTree();
-      notify(`Campaign “${info.name}” opened`);
-    }
+    const dir = await pickFolder("Open Campaign Folder");
+    if (!dir) return;
+    const info = await setCampaign(dir);
+    campaign.info = info;
+    campaign.doc = null;
+    campaign.tree = await readCampaignTree();
+    notify(`Campaign “${info.name}” opened`);
   } catch (e) {
     notify(String(e), "error");
   } finally {

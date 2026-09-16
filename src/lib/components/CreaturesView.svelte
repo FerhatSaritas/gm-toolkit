@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { getCurrentWebview } from "@tauri-apps/api/webview";
-  import { deleteFile, duplicateFile, addToEncounter, createEncounter, createStatblock, pickImportFile, requestImportPreview } from "../commands";
+  import { deleteFile, duplicateFile, addToEncounter, createEncounter, createStatblock, pickFile, requestImportPreview } from "../commands";
   import type { CreatureKind, ImportPreview, StatblockSummary } from "../commands";
   import { catalog, refreshCatalog } from "../stores/catalog.svelte";
   import { ui, showLibrary } from "../stores/ui.svelte";
@@ -62,7 +62,7 @@
 
   async function startImportDialog() {
     try {
-      const path = await pickImportFile();
+      const path = await pickFile("Import Statblock", ["md", "json"]);
       if (!path) return;
       importPreviewData = await requestImportPreview(path);
     } catch (e) {
